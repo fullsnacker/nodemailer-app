@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "start": "ts-node src/index.ts",
-  "build": "tsc",
-  "serve": "node dist/index.js"
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "serve": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -13,13 +13,17 @@
   "description": "",
   "devDependencies": {
     "@types/dotenv": "^6.1.1",
+    "@types/handlebars": "^4.0.40",
     "@types/node": "^24.2.1",
     "@types/nodemailer": "^6.4.17",
+    "@types/nodemailer-express-handlebars": "^4.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
-    "nodemailer": "^7.0.5"
+    "handlebars": "^4.7.8",
+    "nodemailer": "^7.0.5",
+    "nodemailer-express-handlebars": "^7.0.0"
   }
 }
