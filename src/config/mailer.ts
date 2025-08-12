@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 import * as dotenv from "dotenv";
 import { configureHandlebars } from "./handlebars.config";
+import { IEmailRequest } from "../interfaces/IEmailRequest";
 
 dotenv.config();
 
@@ -22,21 +23,29 @@ interface EmailOptions {
   context: Record<string, any>;
 }
 
-export const sendEmail = async (options: EmailOptions) => {
+export const sendEmail = async (emailData: IEmailRequest) => {
   try {
+    // Contexto mínimo requerido para los partials
+    const fullContext = {
+      appName: process.env.APP_NAME || "Mi Aplicación",
+      currentYear: new Date().getFullYear(),
+      unsubscribeLink: "#",
+      contactLink: "#",
+      ...emailData.context,
+    };
+
     const mailOptions = {
-      from: process.env.GMAIL_USER,
-      to: options.to,
-      subject: options.subject,
-      template: options.template,
-      context: options.context,
+      from: `"${fullContext.appName}" <${process.env.GMAIL_USER}>`,
+      to: emailData.to,
+      subject: emailData.subject,
+      template: emailData.template,
+      context: fullContext,
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log("Email enviado: ", info.messageId);
     return info;
   } catch (error) {
-    console.error("Error al enviar el email: ", error);
+    console.error("Error sending email:", error);
     throw error;
   }
 };

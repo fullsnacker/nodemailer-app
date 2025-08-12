@@ -10,10 +10,10 @@ async function main() {
       template: "welcome",
       context: {
         title: "Bienvenido",
-        appName: "Mi Aplicación",
+        appName: "Mailer",
         currentYear: new Date().getFullYear(),
-        name: "Juan Pérez",
-        email: "juan@example.com",
+        name: "Juan García",
+        email: "jugagd@gmail.com",
         verificationLink: "https://miapp.com/verify?token=abc123",
       },
     });
