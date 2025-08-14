@@ -3,25 +3,40 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon --watch src --exec ts-node src/server.ts",
     "build": "tsc",
-    "serve": "node dist/index.js"
+    "serve": "node dist/server.js",
+    "test:email": "ts-node src/send-test-email.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "node",
+    "nodemailer",
+    "express",
+    "typescript",
+    "email"
+  ],
+  "author": "fullsnacker",
+  "license": "MIT",
+  "description": "Simple Node.js app using Nodemailer to send emails from Gmail with Handlebars templates.",
   "devDependencies": {
+    "@types/body-parser": "^1.19.6",
+    "@types/cors": "^2.8.19",
     "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.3",
     "@types/handlebars": "^4.0.40",
     "@types/node": "^24.2.1",
     "@types/nodemailer": "^6.4.17",
     "@types/nodemailer-express-handlebars": "^4.0.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "nodemon": "^3.1.10"
   },
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.1",
+    "express": "^5.1.0",
     "handlebars": "^4.7.8",
     "nodemailer": "^7.0.5",
     "nodemailer-express-handlebars": "^7.0.0"

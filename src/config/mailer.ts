@@ -16,33 +16,22 @@ const transporter = nodemailer.createTransport({
 // Configurar Handlebars
 configureHandlebars(transporter);
 
-interface EmailOptions {
-  to: string;
-  subject: string;
-  template: string;
-  context: Record<string, any>;
-}
-
 export const sendEmail = async (emailData: IEmailRequest) => {
   try {
-    // Contexto mínimo requerido para los partials
-    const fullContext = {
-      appName: process.env.APP_NAME || "Mi Aplicación",
-      currentYear: new Date().getFullYear(),
-      unsubscribeLink: "#",
-      contactLink: "#",
-      ...emailData.context,
-    };
-
     const mailOptions = {
-      from: `"${fullContext.appName}" <${process.env.GMAIL_USER}>`,
+      from: `"${emailData.context.appName || "Mi Aplicación"}" <${
+        process.env.GMAIL_USER
+      }>`,
       to: emailData.to,
       subject: emailData.subject,
       template: emailData.template,
-      context: fullContext,
+      context: emailData.context,
     };
 
     const info = await transporter.sendMail(mailOptions);
+    console.log(
+      `Email sent to ${emailData.to} with template ${emailData.template}`
+    );
     return info;
   } catch (error) {
     console.error("Error sending email:", error);
