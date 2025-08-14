@@ -84,11 +84,11 @@ templates/
 
 ## 🔍 Próximos pasos
 
-- [ ] Implementar servidor Express con endpoints REST
+- [x] Implementar servidor Express con endpoints REST
 - [ ] Añadir autenticación para los endpoints
 - [ ] Implementar sistema de colas para envíos masivos
 - [ ] Añadir sistema de logging
-- [ ] Configurar Docker para el despliegue
+- [x] Configurar Docker para el despliegue
 
 ## 🤝 Contribución
 
